@@ -56,10 +56,8 @@ void draw() {
 
   fill(0);
   if (turn) {
-    text("Your Turn", 400, 400);
-  } else {
-    text(" ", 400, 400);
-  }
+    text("Your Move", width/2, height/2-50);
+  } 
    if (pawnpromotion) {
     fill(0);
     rect(width/2-150, height/2-150, 300, 300);

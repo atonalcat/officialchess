@@ -54,10 +54,8 @@ void draw() {
 
   fill(0);
   if (turn) {
-    text("Your Turn", 400, 400);
-  } else {
-    text(" ", 400, 400);
-  }
+    text("Your Move", width/2, height/2-50);
+  } 
   if (pawnpromotion) {
     fill(0);
     rect(width/2-150, height/2-150, 300, 300);
@@ -71,23 +69,7 @@ void draw() {
     text("B = Bishop", 350, 400);
   }
 }
-void pawnPromotion() {
-  if (key == 'r' || key == 'R') {
-    grid[0][col2] = 'r';
-    num =1;
-  } else if (key == 'b' || key == 'B') {
-    grid[0][col2] = 'b';
-    num =2;
-  } else if (key == 'q' || key == 'Q') {
-    grid[0][col2] = 'q';
-    num =3;
-  } else if (key == 'n' || key == 'N') {
-    grid[0][col2] = 'n';
-    num =4;
-  }
-  myClient.write(num + "," + col1 + "," + row2 + "," + col2 + "," + "2" + "," + RAGERAGERAGE);
-  pawnpromotion = false;
-}
+
 void receiveMove() {
   if (myClient.available() > 0) {
     String incoming = myClient.readString();
@@ -121,7 +103,23 @@ void receiveMove() {
     }
   }
 }
-
+void pawnPromotion() {
+  if (key == 'r' || key == 'R') {
+    grid[0][col2] = 'r';
+    num =1;
+  } else if (key == 'b' || key == 'B') {
+    grid[0][col2] = 'b';
+    num =2;
+  } else if (key == 'q' || key == 'Q') {
+    grid[0][col2] = 'q';
+    num =3;
+  } else if (key == 'n' || key == 'N') {
+    grid[0][col2] = 'n';
+    num =4;
+  }
+  myClient.write(num + "," + col1 + "," + row2 + "," + col2 + "," + "2" + "," + RAGERAGERAGE);
+  pawnpromotion = false;
+}
 void drawBoard() {
   for (int r = 0; r < 8; r++) {
     for (int c = 0; c < 8; c++) { 
